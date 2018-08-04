@@ -14,8 +14,6 @@ DeviceAddress one, two, three, four;
 // DeviceAddress insideThermometer = { 0x28, 0x1D, 0x39, 0x31, 0x2, 0x0, 0x0, 0xF0 };
 // DeviceAddress outsideThermometer   = { 0x28, 0x3F, 0x1C, 0x31, 0x2, 0x0, 0x0, 0x2 };
 
-
-
 void setup(void){
   Serial.begin(9600);
   sensors.begin();
@@ -41,8 +39,6 @@ void setup(void){
   if (!sensors.getAddress(three,2)) Serial.println("Unable to find address for Device 2");
   if (!sensors.getAddress(four, 3)) Serial.println("Unable to find address for Device 3");
 
-
-
   // set the resolution to 8/9/10 bit per device
   sensors.setResolution(one, TEMPERATURE_PRECISION);
   sensors.setResolution(two, TEMPERATURE_PRECISION);
@@ -66,8 +62,6 @@ void setup(void){
   printAddress(four);
   Serial.print("\tResolution: ");
   Serial.println(sensors.getResolution(four), DEC);
-
-
   Serial.println("Starting logging");
   Serial.println("Temperature by Address");
   
@@ -80,7 +74,6 @@ void setup(void){
   printAddress(four);
   Serial.print("\n");
 }
-
 
 /*
    Main function, calls the temperatures in a loop.
