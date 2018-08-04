@@ -1,5 +1,5 @@
 # weatherstation
-## 1. Using Multiplex (MUX) to collect multiple analog input through one analog pin on ESP8266
+## 1. Using Multiplex (MUX) to collect multiple analog inputs through one analog pin on ESP8266
 - CD4051 MUX IC acts as a very fast potentiometer that it seqentially reads the analog value of sensors
 ## 2. Example using 4 temperature sensors (18B20) with an Arduino Nano
 - The 18B20 is a simple devide using one-wire bus that is similar to I2C method.  Each devides has one unique address so we can daisy-chain as many sensors as wish. To ouput, in this case the temperature, can be distinguish from others by specifying the address of the target DS18B20.
