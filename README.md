@@ -8,4 +8,17 @@
   <img src="https://github.com/binh-bk/weatherstation/blob/master/18B20_multi_reads/18B20.jpg"/>
 </p>
 
-## 3. To be added.
+## 3. A complete setup of weather station with:
+- a WEMOS ESP8266 using deepsleep mode (with 5 minute interval)
+- collect light, temperature and humidity, posts data to the MQTT broker
+- sparse out data using Paho-MQTT-Python, store in sqlite database, and display data in a web-based platform
+### Schematics:
+<p align="center">
+  <img src="https://github.com/binh-bk/weatherstation/blob/master/esp8266_deepsleep_Aug4/esp8266_deepsleep_ws.png"/>
+</p>
+
+### Screenshot
+<p align="center">
+  <img src="https://github.com/binh-bk/weatherstation/blob/master/esp8266_deepsleep_Aug4/screencapture-mqtt-9999-2018-08-04-23_00_44.png"/>
+</p>
+## 4. To be added.
