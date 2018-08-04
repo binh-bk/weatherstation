@@ -7,4 +7,5 @@
 <p align="center">
   <img src="https://github.com/binh-bk/weatherstation/blob/master/18B20_multi_reads/18B20.jpg"/>
 </p>
+
 ## 3. To be added.
