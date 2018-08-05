@@ -14,11 +14,13 @@ class SqlReader:
 
     def getData(self):
         # connection = sqlite3.connect('/mnt/mqtt2/ws.db')
-        connection = sqlite3.connect('ws.db')
+        connection = sqlite3.connect('weatherstation.db')
         cursor = connection.cursor()
 
         sql_command = """
-        SELECT * from  node2b;"""
+        SELECT * from  weatherdata
+        ORDER BY thetime DESC
+        LIMIT 1000;"""
 
         cursor.execute(sql_command)
         result = cursor.fetchall()
