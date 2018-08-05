@@ -8,7 +8,7 @@ import sqlite3, json
 mqtt_topic = 'balcony/weatherstation'
 mqtt_username = "johndoe"
 mqtt_password = "password"
-dbFile = "ws.db"
+dbFile = "/path/to/databse/weatherstation.db"
 mqtt_broker_ip = '192.168.1.50'
 dataTuple = [-1,-1, -1, -1, -1, -1]
 
