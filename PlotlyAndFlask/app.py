@@ -1,14 +1,11 @@
 from flask import Flask, render_template
-
 import json
 import plotly
-
-app = Flask(__name__)
 import sqlite3
-
-import plotly
 from plotly import tools
 import plotly.graph_objs as go
+
+app = Flask(__name__)
 
 class SqlReader:
 
@@ -27,7 +24,6 @@ class SqlReader:
 
         cursor.close()
         return result
-
 
 @app.route('/')
 def index():
@@ -119,7 +115,6 @@ def index():
     return render_template('layouts/index.html',
                            ids=ids,
                            graphJSON=graphJSON)
-
 
 if __name__ == '__main__':
     #app.run(host='localhost', port=9999, debug=True)
