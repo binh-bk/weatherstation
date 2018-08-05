@@ -1,5 +1,6 @@
 ### install sqlite3:
 ```sudo apt-get install sqlite3```
+
 live@tp ~/Desktop $ sudo apt-get install sqlite3
 [sudo] password for live: 
 Reading package lists... Done
