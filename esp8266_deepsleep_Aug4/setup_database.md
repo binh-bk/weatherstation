@@ -24,9 +24,12 @@ CREATE TABLE weatherdata (id INT PRIMARY KEY, thetime DATETIME, ldr INT, tls2561
 sqlite> .exit
 live@tp ~/Desktop $ 
 
-### link the full path of the database to the Python script 
+### link the full path of the database in the Python script 
 
 dbFile = "/path/to/databse/weatherstation.db"
+
+### screenshot
+<img src='https://github.com/binh-bk/weatherstation/blob/master/esp8266_deepsleep_Aug4/Desktop_026.png'/>
 
 
 
