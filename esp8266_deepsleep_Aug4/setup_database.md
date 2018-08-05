@@ -1,15 +1,15 @@
-- install sqlite3:
-sudo apt-get install sqlite3
-- create database and a table, in the terminal
-sqlite3 weatherstation.db
-
-live@tp ~/Desktop $ sudo apt-get install sqlite3
+### install sqlite3:
+```sudo apt-get install sqlite3```
+```live@tp ~/Desktop $ sudo apt-get install sqlite3
 [sudo] password for live: 
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
 sqlite3 is already the newest version (3.11.0-1ubuntu1).
-0 upgraded, 0 newly installed, 0 to remove and 61 not upgraded.
+0 upgraded, 0 newly installed, 0 to remove and 61 not upgraded.```
+
+### create database and a table, in the terminal
+
 live@tp ~/Desktop $ sqlite3 weatherstation.db
 SQLite version 3.11.0 2016-02-15 17:29:24
 Enter ".help" for usage hints.
@@ -23,4 +23,5 @@ CREATE TABLE weatherdata (id INT PRIMARY KEY, thetime DATETIME, ldr INT, tls2561
 /* No STAT tables available */
 sqlite> .exit
 live@tp ~/Desktop $ 
+
 
