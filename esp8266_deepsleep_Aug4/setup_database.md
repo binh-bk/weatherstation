@@ -32,5 +32,12 @@ dbFile = "/path/to/databse/weatherstation.db"
 <img src='https://github.com/binh-bk/weatherstation/blob/master/esp8266_deepsleep_Aug4/Desktop_026.png'/>
 
 
+### clean up data 
+For example, DS18B20 returns -127 if the wire is not connected properly (or disconnect).  That absolute value skews the scale the real value of temperature (5-40 *C* in Hanoi).  To clean up the database, I update the -127 value by NULL
+```UPDATE weatherdata SET ds18b20 = NULL 
+WHERE ds18b20 = -127;```
+
+
+
 
 
