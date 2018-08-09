@@ -53,7 +53,6 @@ const int BUFFER_SIZE = 300;
 
 /*______________        _ START SETUP _        _______________*/
 void setup() {
-
   Serial.begin(115200);
   Serial.println("Starting Node named " + String(SENSORNAME));
   setup_wifi();
@@ -79,9 +78,8 @@ void setup() {
 
   h = SHT21.getHumidity();
   t = SHT21.getTemperature();
-  
-  tempSensor.setWaitForConversion(false); // Don't block the program while the temperature sensor is reading
-  tempSensor.begin();                     // Start the temperature sensor
+  tempSensor.setWaitForConversion(false); 
+  tempSensor.begin();                     
   delay(100);
   if (tempSensor.getDeviceCount() == 0) {
     Serial.printf("DS18x20 not found on pin %d\n", ds18b20);
@@ -98,13 +96,12 @@ void setup() {
   Serial.printf("H:%0.2f \t", h);
   Serial.printf("HIC: %0.2f \t", hic);
   delay(100);
-
   client.setServer(mqtt_server, mqtt_port);
   client.setCallback(callback);
   reconnect();
   delay(100);
   
-  ESP.deepSleep(3e8); // 60 millions micro seconds, 300 seconds, 5 minutes;
+  ESP.deepSleep(3e8); // 300 millions micro seconds, 300 seconds, 5 minutes;
 }
 
 /*______________        _ START MAIN LOOP _        _______________*/
