@@ -160,11 +160,11 @@ void sendState() {
   hic = heatIndex(t, h);
   root["sensor"] = SENSORNAME;
   root["ldr"] = ldr;
-  root["TSL2561"] = lux;
+  root["tsl2561"] = lux;
   root["ds18b20"] = t18;
-  root["tSHT21"] = t;
-  root["hSHT21"] = h;
-  root["HIC"] = hic;
+  root["tsht21"] = t;
+  root["hsht21"] = h;
+  root["hic"] = hic;
 
   char buffer[root.measureLength() + 1];
   root.printTo(buffer, sizeof(buffer));
