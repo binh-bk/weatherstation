@@ -10,7 +10,6 @@ mqtt_username = "johndoe"
 mqtt_password = "password"
 dbFile = "/path/to/databse/weatherstation.db"
 mqtt_broker_ip = '192.168.1.50'
-dataTuple = [-1,-1, -1, -1, -1, -1]
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -21,33 +20,19 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     theTime = strftime("%Y-%m-%d %H:%M:%S", localtime())
 
-    result = (theTime + "\t" + str(msg.payload))
-    print(msg.topic + ":\t" + result)
-    jsonDict = json.loads(msg.payload.decode('utf-8'))
+    topic = msg.topic
+    payload = json.dumps(msg.payload.decode('utf-8'))
+    sql_cmd = sql_cmd = """INSERT INTO weatherdata VALUES ({0}, '{1}',\
+        {2[ldr]}, {2[tsl2561]},{2[ds18b20]}, {2[tsht21]},{2[hsht21]})""".format(None, time_, payload)
+    writeToDB(sql_cmd)
+    print(sql_cmd)
+    return None
 
-    if msg.topic == mqtt_topic:
-        dataTuple[0] = jsonDict['ldr']
-        dataTuple[1] = jsonDict['TSL2561']
-        dataTuple[2] = jsonDict['ds18b20']
-        dataTuple[3] = jsonDict['tSHT21']
-        dataTuple[4] = jsonDict['hSHT21']
-        dataTuple[5] = jsonDict['HIC']
-        #return
-        print("Data saved", dataTuple)
-    if dataTuple[0] != -1:
-        writeToDb(theTime, dataTuple[0], dataTuple[1], dataTuple[2], dataTuple[3],\
-                  dataTuple[4],dataTuple[5])
-    return
-
-def writeToDb(theTime, ldr, tls, ds18b20, t, h , hic):
+def writeToDb(sql_cmd):
     conn = sqlite3.connect(dbFile)
-    c = conn.cursor()
-     #print("Writing ", )
-    c.execute("INSERT INTO weatherstation VALUES (?,?,?,?,?,?, ?, ?)", (None, theTime, ldr, tls, ds18b20, t, h , hic))
+    cur = conn.cursor()
+    cur.execute(sql_command)
     conn.commit()
-
-    global dataTuple
-    dataTuple = [-1,-1, -1, -1, -1, -1]
 
 client = mqtt.Client()
 client.on_connect = on_connect
@@ -56,4 +41,3 @@ client.username_pw_set(username=mqtt_username, password=mqtt_password)
 client.connect(mqtt_broker_ip, 1883, 60)
 sleep(1)
 client.loop_forever()
-
