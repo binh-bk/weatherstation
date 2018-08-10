@@ -12,6 +12,7 @@
 - a WEMOS ESP8266 using deepsleep mode (with 5 minute interval)
 - collect light, temperature and humidity, posts data to the MQTT broker
 - sparse out data using Paho-MQTT-Python, store in sqlite database, and display data in a web-based platform
+- <a href='https://www.instructables.com/id/Weather-Station-ESP8266-With-Deep-Sleep-SQL-Graphi/'> a detailed writeup on Instructables.com</a> 
 ### Schematics:
 <p align="center">
   <img src="https://github.com/binh-bk/weatherstation/blob/master/esp8266_deepsleep_Aug4/esp8266_deepsleep_ws.png"/>
