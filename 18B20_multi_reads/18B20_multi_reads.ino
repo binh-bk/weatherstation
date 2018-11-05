@@ -2,7 +2,7 @@
 #include <OneWire.h>
 #include <DallasTemperature.h>
 #define ONE_WIRE_BUS 9
-#define TEMPERATURE_PRECISION 10
+#define TEMPERATURE_PRECISION 12
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
 DeviceAddress one, two, three, four;
