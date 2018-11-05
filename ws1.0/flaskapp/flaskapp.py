@@ -1,4 +1,5 @@
-
+# Binh Nguyen November 2018
+# A simple FlaskApp to display data of a home weather station
 from flask import Flask, render_template
 import json
 import plotly
@@ -11,8 +12,9 @@ import logging
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
-
-dbFile = '/mnt/mqtt2/weather.db'
+# use full path first if you have problem with not found db
+# dbFile = '/mnt/mqtt2/weather.db'
+dbFile = 'weather.db'
 
 
 title_format = dict(
