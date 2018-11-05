@@ -32,8 +32,6 @@ Adafruit_Si7021 Si7021 = Adafruit_Si7021();
 #include <DallasTemperature.h>
 
 /*______________        _ WIFI and MQTT INFORMATION  _        _______________*/
-//#define wifi_ssid "zest" //type your WIFI information inside the quotes
-//#define wifi_password "7A62h2b2V4$u"
 #define wifi_ssid "freewifi" //type your WIFI information inside the quotes
 #define wifi_password "nopasswd"
 #define mqtt_server "192.168.1.x"
