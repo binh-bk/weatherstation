@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 # use full path first if you have problem with not found db
 # dbFile = '/mnt/mqtt2/weather.db'
-dbFile = 'weather.db'
+dbFile = '../capture_data/weather.db'
 
 
 title_format = dict(
@@ -50,20 +50,17 @@ class SqlReader:
         sql_command = """SELECT * FROM node1_post 
         WHERE datetime(time, 'utc')  >= datetime('now','-0{} hours');""".format(hours) 
         df = pd.read_sql_query(sql_command, conn)
+        '''make a band of +- 2 STD for a 95% confident level'''
         df['time'] = pd.to_datetime(df['time'])
         df['LDR_AVG'] = df['LDR_AVG']*100/1024
         df['LDR_STD'] = 2*df['LDR_STD']*100/1024
         df['LDR_AVG'] = df['LDR_AVG'].round(1)
         df['LDR_STD'] = df['LDR_STD'].round(1)
 
-        df['LUM_STD'] = 2*df['LUM_STD'].round(1)
-        df['LUX_STD'] = 2*df['LUX_STD'].round(1)
         df['TEM_STD'] = 2*df['TEM_STD']
         df['HUM_STD'] = 2*df['HUM_STD']
         cursor.close()
         return df
-
-
 
 @app.route('/')
 def test():
@@ -122,9 +119,8 @@ def light():
     ]
     ids = ['Graph {}'.format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
-    kw = 'live chart of light intensity measured by a generic light-dependent resistance'
     return render_template('chart.html',ids=ids,
-                           graphJSON=graphJSON, title='LDR', description = kw)
+                           graphJSON=graphJSON, title='Light')
 
 
 @app.route('/temperature')
@@ -185,9 +181,8 @@ def temperature():
     ]
     ids = ['Graph {}'.format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
-    kw = 'live chart of temperature measured by low cost sensors'
     return render_template('chart.html',ids=ids,
-                           graphJSON=graphJSON, title='Temperature', description=kw)
+                           graphJSON=graphJSON, title='Temperature')
 
 
 @app.route('/humidity')
@@ -239,7 +234,6 @@ def humidity():
                     ),
                 yaxis=dict(
                     title='Relative Humidity (%)',
-                    # range=[min_humidity, max_humidity],
                     autorange=True,
                     titlefont=xy_format,
                     tickfont=tickfont,
@@ -248,17 +242,11 @@ def humidity():
         ),
     ]
 
-    # Add "ids" to each of the graphs to pass up to the client
-    # for templating
     ids = ['Graph {}'.format(i) for i, _ in enumerate(graphs)]
 
-    # Convert the figures to JSON
-    # PlotlyJSONEncoder appropriately converts pandas, datetime, etc
-    # objects to their JSON equivalents
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
-    kw = 'live chart of relative humidity measured by low-cost sensors'
     return render_template('chart.html',ids=ids,
-                           graphJSON=graphJSON, title='Humidity', description=kw)
+                           graphJSON=graphJSON, title='Humidity')
 
 
 if __name__ == '__main__':
