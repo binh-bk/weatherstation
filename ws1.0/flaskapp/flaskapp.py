@@ -250,4 +250,6 @@ def humidity():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+#    app.run(debug=True, port=5000)
+# this set to access to flask app from outside this localhost
+    app.run(host='0.0.0.0', debug=False, port=5000)
